@@ -18,7 +18,9 @@ def main():
     #fetch_transcript(sys.argv[1])
     #generate_quiz(fetch_transcript(sys.argv[1]))
 
-    give_quiz(generate_quiz(fetch_transcript(sys.argv[1])))
+    quiz_answer_key = generate_quiz(fetch_transcript(sys.argv[1]))
+    #print(quiz_answer_key.model_dump_json(indent=4))
+    give_quiz(quiz_answer_key)
 
     
 
