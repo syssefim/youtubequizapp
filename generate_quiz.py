@@ -22,7 +22,7 @@ client = genai.Client(api_key=api_key)
 
 def generate_quiz(transcript):
     # 4. Define your prompt
-    prompt = "Based off of this text, create a multiple choice quiz with 7 questions. Then return the questions and answers as a python list: " + transcript
+    prompt = "Based off of this text, create a multiple choice quiz with 7 questions. Then return the questions and answers as a json object: " + transcript
 
     # 5. Generate content
     # Note the changes: client.models.generate_content, and the arguments are 'model' and 'contents'
@@ -31,4 +31,5 @@ def generate_quiz(transcript):
         contents=prompt
     )
 
-    print(response.text)
+    #print(response.text)
+    return response
