@@ -6,7 +6,43 @@
     <title>Document</title>
 </head>
 <body>
+    <!--
     <h1>video link: </h1>
-    <p>{{ video_url }}</p>
+    <p>{{ quiz_data }}</p>-->
+
+    <!--
+    <ul>
+    {% for q in quiz_data.questions %}
+        <li>{{ q.question }}</li>
+    {% endfor %}
+    </ul>-->
+
+
+    
+
+
+
+    {% set correct_answer = quiz_data.questions[0].correct_answer %}
+
+    <li>{{ quiz_data.questions[0].question }}</li>
+
+    <form action="#" method="post">
+        <ul>
+            {% for a in quiz_data.questions[0].options %}
+                <li>
+                    <label>
+                        <input type="radio" name="choice" value="{{ a }}" required>
+                        {{ a }}
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit</button>
+        <button type="button" disabled>Next</button>
+    </form>
+
+    
+
+
 </body>
 </html>

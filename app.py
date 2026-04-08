@@ -73,15 +73,15 @@ def home():
         return render_template("index.html")
     
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["POST", "GET"])
 def quiz():
     if "link" not in session:
         return redirect(url_for("home"))
     else:
-        #quiz_data = generate_quiz(fetch_transcript(session["link"]))
-        quiz_data = session["link"]
+        quiz = generate_quiz(fetch_transcript(session["link"]))
+        # quiz_data = session["link"]
 
-        return render_template("quiz.html", video_url=quiz_data)
+        return render_template("quiz.html", quiz_data=quiz)
 
     
 
