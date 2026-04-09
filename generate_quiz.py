@@ -60,4 +60,4 @@ def generate_quiz(transcript):
     #     print(f"{q.id}. {q.question}")
     #     print(f"   Answer: {q.correct_answer}\n")
 
-    return quiz_data
+    return quiz_data.text

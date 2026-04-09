@@ -6,21 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <!--
-    <h1>video link: </h1>
-    <p>{{ quiz_data }}</p>-->
-
-    <!--
-    <ul>
-    {% for q in quiz_data.questions %}
-        <li>{{ q.question }}</li>
-    {% endfor %}
-    </ul>-->
 
 
     
 
 
+    <!--<script src="{{ url_for('static', filename='app.js') }}"></script>
 
     {% set correct_answer = quiz_data.questions[0].correct_answer %}
 
@@ -39,9 +30,16 @@
         </ul>
         <button type="submit">Submit</button>
         <button type="button" disabled>Next</button>
-    </form>
+    </form>-->
 
-    
+    <script>
+        // Notice the addition of | safe at the end
+        const quizQuestions = {{ quiz_data.questions | tojson | safe }};
+
+        for (let i = 0; i < quizQuestions.length; i++) {
+            console.log(quizQuestions[i].question); 
+        }
+    </script>
 
 
 </body>
