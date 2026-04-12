@@ -89,7 +89,7 @@ def quiz():
             response = generate_quiz(fetch_transcript(session["link"]))
             quiz = json.loads(response)
 
-            r.set(session["link"], json.dumps(quiz))
+            r.set(session["link"], json.dumps(quiz), ex=CACHE_TTL)
         else:
             quiz = json.loads(raw_quiz)
 
