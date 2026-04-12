@@ -34,14 +34,18 @@ from give_quiz import give_quiz
 from flask import Flask, redirect , url_for, render_template, request, session, flash
 import requests
 import redis
+import json
 
 
 
 # Connect to Redis
-r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+r = redis.Redis(host='localhost', port=6379, db=0)
 
 #Time to live value for redis cache
 CACHE_TTL = 1800 # 30 minutes
+
+response = r.ping()
+print("my rrrrrresponse:", response)
 
 
 
@@ -78,8 +82,25 @@ def quiz():
     if "link" not in session:
         return redirect(url_for("home"))
     else:
-        quiz = generate_quiz(fetch_transcript(session["link"]))
+        #redis
+        raw_quiz = r.get(session["link"])
+
+        if raw_quiz is None:
+            response = generate_quiz(fetch_transcript(session["link"]))
+            quiz = json.loads(response)
+
+            r.set(session["link"], json.dumps(quiz))
+        else:
+            quiz = json.loads(raw_quiz)
+
+
+
+        # quiz = generate_quiz(fetch_transcript(session["link"]))
         # quiz_data = session["link"]
+
+
+        # Convert to a Python dictionary
+        # data = json.loads(quiz)
 
         return render_template("quiz.html", quiz_data=quiz)
 

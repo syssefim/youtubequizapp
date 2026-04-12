@@ -2,6 +2,7 @@ from google import genai
 import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
+import json
 
 # 1. Load the environment variables from the .env file
 load_dotenv()
@@ -56,8 +57,6 @@ def generate_quiz(transcript):
 
     quiz_data = Quiz.model_validate_json(response.text)
 
-    # for q in answer_key:
-    #     print(f"{q.id}. {q.question}")
-    #     print(f"   Answer: {q.correct_answer}\n")
+    
 
-    return quiz_data.text
+    return quiz_data.model_dump_json()

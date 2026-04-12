@@ -11,35 +11,31 @@
     
 
 
-    <!--<script src="{{ url_for('static', filename='app.js') }}"></script>
+    
+    
 
-    {% set correct_answer = quiz_data.questions[0].correct_answer %}
+       
+   <li>{{ quiz_data.questions[0].question }}</li>
 
-    <li>{{ quiz_data.questions[0].question }}</li>
 
-    <form action="#" method="post">
-        <ul>
-            {% for a in quiz_data.questions[0].options %}
-                <li>
-                    <label>
-                        <input type="radio" name="choice" value="{{ a }}" required>
-                        {{ a }}
-                    </label>
-                </li>
-            {% endfor %}
-        </ul>
-        <button type="submit">Submit</button>
-        <button type="button" disabled>Next</button>
-    </form>-->
+   <form action="#" method="post">
+       <ul>
+           {% for a in quiz_data.questions[0].options %}
+               <li>
+                   <label>
+                       <input type="radio" name="choice" value="{{ a }}" required>
+                       {{ a }}
+                   </label>
+               </li>
+           {% endfor %}
+       </ul>
+       <button type="submit">Submit</button>
+       <button type="button" disabled>Next</button>
+   </form>  
 
-    <script>
-        // Notice the addition of | safe at the end
-        const quizQuestions = {{ quiz_data.questions | tojson | safe }};
 
-        for (let i = 0; i < quizQuestions.length; i++) {
-            console.log(quizQuestions[i].question); 
-        }
-    </script>
+
+
 
 
 </body>
